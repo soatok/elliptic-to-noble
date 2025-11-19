@@ -30,7 +30,7 @@
     "shim"
   ],
   "author": "Soatok Dreamseeker",
-  "license": "MIT",
+  "license": "ISC",
   "repository": "https://github.com/soatok/elliptic-to-noble",
   "publishConfig": {
     "access": "public"
