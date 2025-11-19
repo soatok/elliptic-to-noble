@@ -1,7 +1,6 @@
 # Elliptic to Noble
 
 [![Build Status](https://github.com/soatok/elliptic-to-noble/actions/workflows/ci.yml/badge.svg)](https://github.com/soatok/elliptic-to-noble/actions/workflows/ci.yml)
-[![License](https://poser.pugx.org/soatok/elliptic-to-noble/license)](https://packagist.org/packages/soatok/elliptic-to-noble)
 
 API-compatible replacement library for migrating from [elliptic](https://github.com/indutny/elliptic) to
 [noble-curves](https://github.com/paulmillr/noble-curves).
