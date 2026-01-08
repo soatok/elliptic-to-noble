@@ -40,7 +40,11 @@ class EC {
         return new KeyPair(this, { pub: bytes });
     }
 
-    genKeyPair() {
+    genKeyPair(opts) {
+        if (opts?.hash || opts?.entropy) {
+            throw new Error('HMAC DRBG not supported');
+        }
+
         const { secretKey, publicKey } = this.noble.keygen();
         return new KeyPair(this, {
             priv: secretKey,
