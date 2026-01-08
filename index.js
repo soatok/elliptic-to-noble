@@ -33,18 +33,16 @@ const bytesToHex = (bytes) => {
 // Begin elliptic-compatible API
 class EC {
     constructor(name) {
-        name = name.toLowerCase();
-
         if (name === 'secp256k1') {
             this.noble = {...secp256k1};
             this.privateKeyLength = 32;
-        } else if (['p256', 'prime256v1', 'nistp256'].includes(name)) {
+        } else if (name === 'p256') {
             this.noble = {...p256};
             this.privateKeyLength = 32;
-        } else if (['p384', 'prime384v1', 'nistp384'].includes(name)) {
+        } else if (name === 'p384') {
             this.noble = {...p384};
             this.privateKeyLength = 48;
-        } else if (['p521', 'prime521v1', 'nistp521'].includes(name)) {
+        } else if (name === 'p521') {
             this.noble = {...p521};
             this.privateKeyLength = 66;
         } else if (name === 'ed25519') {
@@ -52,8 +50,6 @@ class EC {
         } else if (name === 'curve25519') {
             if (!x25519) throw new Error('curve25519 requires @noble/curves ≥1.3');
             this.noble = { x25519 }; this.type = 'montgomery';
-        } else if (['secp224r1', 'nistp224'].includes(name)) {
-            throw new Error('secp224r1 is insecure and not supported');
         } else {
             throw new Error(`Unsupported curve: ${name}`);
         }
