@@ -16,9 +16,6 @@
   "dependencies": {
     "@noble/curves": "^2.0.1"
   },
-  "overrides": {
-    "elliptic": "./"
-  },
   "keywords": [
     "elliptic",
     "noble",
