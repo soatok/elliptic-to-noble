@@ -126,7 +126,7 @@ class Signature {
 
     toDER(enc) {
         if (enc === 'hex') return bytesToHex(this.#der);
-        return this.#der;
+        return new Uint8Array(this.#der);
     }
 }
 
@@ -238,7 +238,7 @@ class EdSignature {
     }
 
     toBytes() {
-        return this.#bytes;
+        return new Uint8Array(this.#bytes);
     }
 
     toHex() {
