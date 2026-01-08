@@ -4,23 +4,7 @@
 const { secp256k1 } = require('@noble/curves/secp256k1.js');
 const { p256, p384, p521 } = require('@noble/curves/nist.js');
 const { ed25519 } = require('@noble/curves/ed25519.js');
-
-const hexToBytes = (hex) => {
-    if (typeof hex !== 'string') throw new Error('hex string expected');
-    if (hex.length % 2) throw new Error('hex string must have even length');
-    const len = hex.length / 2;
-    const bytes = new Uint8Array(len);
-    for (let i = 0; i < len; i++) {
-        bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
-    }
-    return bytes;
-};
-
-const bytesToHex = (bytes) => {
-    return Array.from(bytes || [])
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('');
-};
+const { hexToBytes, bytesToHex } = require('@noble/curves/utils.js');
 
 // Begin elliptic-compatible API
 class EC {
