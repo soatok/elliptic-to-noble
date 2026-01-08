@@ -140,5 +140,4 @@ module.exports = {
     version: '9999.0.0-soatok',
     utils: { ...utils, hexToBytes, bytesToHex },
     ec: EC,
-    EC: EC,
 };

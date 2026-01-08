@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { EC } from '../index.js';
+import { ec as EC } from '../index.js';
 import { sha256 } from '@noble/hashes/sha2.js';
 import { sha512 } from '@noble/hashes/sha2.js';
 
