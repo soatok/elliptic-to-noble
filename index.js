@@ -5,8 +5,6 @@ const { secp256k1 } = require('@noble/curves/secp256k1.js');
 const { p256, p384, p521 } = require('@noble/curves/nist.js');
 const { ed25519 } = require('@noble/curves/ed25519.js');
 
-const utils =require('@noble/curves/utils.js');
-
 const hexToBytes = (hex) => {
     if (typeof hex !== 'string') throw new Error('hex string expected');
     if (hex.length % 2) throw new Error('hex string must have even length');
@@ -29,16 +27,12 @@ class EC {
     constructor(name) {
         if (name === 'secp256k1') {
             this.noble = {...secp256k1};
-            this.privateKeyLength = 32;
         } else if (name === 'p256') {
             this.noble = {...p256};
-            this.privateKeyLength = 32;
         } else if (name === 'p384') {
             this.noble = {...p384};
-            this.privateKeyLength = 48;
         } else if (name === 'p521') {
             this.noble = {...p521};
-            this.privateKeyLength = 66;
         } else if (name === 'ed25519') {
             this.noble = ed25519;
         } else {
@@ -63,16 +57,11 @@ class EC {
     }
 
     genKeyPair() {
-        let priv;
-        while (!priv) {
-            priv = utils.randomBytes(this.privateKeyLength || 32);
-            try {
-                this.keyFromPrivate(priv, 'bytes').getPublic('hex');
-            } catch (e) {
-                priv = null;
-            }
-        }
-        return this.keyFromPrivate(priv, 'bytes');
+        const { secretKey, publicKey } = this.noble.keygen();
+        return new KeyPair(this, {
+            priv: secretKey,
+            pub: publicKey,
+        });
     }
 }
 
